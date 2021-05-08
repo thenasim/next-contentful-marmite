@@ -1,8 +1,11 @@
 import Image from "next/image";
 import { createClient } from "contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Skeleton from "../../components/Skeleton";
 
 export default function RecipeDetails({ recipe }) {
+  if (!recipe) return <Skeleton />;
+
   const {
     featuredImage,
     title,
@@ -86,7 +89,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
